@@ -137,5 +137,5 @@ The workflow includes:
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/PriyaDharshini22-2005/Health-Care-Call-Center/blob/main/LICENSE) file for details.
 
