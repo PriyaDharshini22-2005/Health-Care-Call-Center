@@ -1,7 +1,5 @@
 # Audio Transcription and Analysis [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/13Wj_wPqIQQvfde6A8AAhzPBvdMCZjjhG?userstoinvite=dhatchayanim.aiml2023%40citchennai.net&sharingaction=manageaccess&role=writer#scrollTo=dSXHUuqoKLtt)
 
-This project aims to transcribe audio files, identify speakers, and analyze sentiment while ensuring HIPAA compliance.
-
 ## Overview
 
 The workflow includes:
@@ -24,30 +22,30 @@ The workflow includes:
 ## Installation
 
 1. Clone the repository:
-    bash
+    ```bash
     git clone <repository_url>
     cd <repository_name>
-    
+    ```
 
 2. Install the required packages:
-    bash
+    ```bash
     pip install git+https://github.com/openai/whisper.git
     pip install git+https://github.com/pyannote/pyannote-audio
     pip install scikit-learn transformers spacy
     python -m spacy download en_core_web_sm
-    
+    ```
 
 ## Usage
 
 1. Upload your audio file:
-    python
+    ```python
     from google.colab import files
     uploaded = files.upload()
     path = next(iter(uploaded))
-    
+    ```
 
 2. Convert the audio to mono:
-    python
+    ```python
     import subprocess
     if path[-3:] != 'wav':
         subprocess.call(['ffmpeg', '-i', path, '-ac', '1', 'audio_mono.wav', '-y'])
@@ -55,10 +53,10 @@ The workflow includes:
     else:
         subprocess.call(['ffmpeg', '-i', path, '-ac', '1', 'audio_mono.wav', '-y'])
         path = 'audio_mono.wav'
-    
+    ```
 
 3. Transcribe and identify speakers:
-    python
+    ```python
     import whisper
     from pyannote.audio import Audio
     from pyannote.audio.pipelines.speaker_verification import PretrainedSpeakerEmbedding
@@ -106,10 +104,10 @@ The workflow includes:
             f.write(segment["text"][1:] + ' ')
 
     print(open("transcript.txt", "r").read())
-    
+    ```
 
 4. Perform sentiment analysis and check for HIPAA compliance:
-    python
+    ```python
     import spacy
 
     nlp = spacy.load("en_core_web_sm")
@@ -135,8 +133,9 @@ The workflow includes:
         for entity, detected in detected_entities.items():
             if not detected:
                 print(f"Missing entity type: {entity}")
-    
+    ```
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/Abishekmrgstar/HEALTH-CARE-CALL-CENTER/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
